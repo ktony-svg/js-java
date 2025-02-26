@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatNow Cafe Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f8f8f8;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to EatNow Cafe!</h1>
+    <p id="greeting"></p>
+
+    <h2>Our Menu</h2>
+    <ul id="menu-list"></ul>
+
+    <input type="text" id="new-dish" placeholder="Suggest a new dish">
+    <button onclick="addDish()">Add Dish</button>
+
+    <script>
+        
+        let userName = prompt("Please enter your first name:");
+        if (!userName.trim()) {
+            userName = "Guest";
+        }
+        document.getElementById("greeting").innerText = `Hello, ${userName}! Check out our delicious menu below.`;
+
+       
+        let menu = ["Grilled Chicken", "Pasta Alfredo", "Margherita Pizza", "Caesar Salad", "Mushroom Soup"];
+        const menuList = document.getElementById("menu-list");
+
+        function displayMenu() {
+            menuList.innerHTML = ""; // Clear existing list
+            menu.forEach((dish, index) => {
+                let listItem = document.createElement("li");
+                listItem.textContent = `${index + 1}. ${dish}`;
+                menuList.appendChild(listItem);
+            });
+        }
+        displayMenu(); 
+
+       
+        function addDish() {
+            let newDish = document.getElementById("new-dish").value.trim();
+            if (newDish) {
+                menu.push(newDish);
+                displayMenu(); // Update the menu
+                document.getElementById("new-dish").value = ""; // Clear input field
+                alert("Thank you for your suggestion! The menu has been updated.");
+            } else {
+                alert("Please enter a valid dish name.");
+            }
+        }
+    </script>
+
+</body>
+</html>
